@@ -1,0 +1,125 @@
+body {
+  font-family: sans-serif;
+  background-color: #0a0a0a; /* очень тёмный серый */
+  color: #e0e0e0; /* светло-серый текст */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #1a1a1a; /* тёмно-серый */
+  padding: 20px;
+  text-align: center;
+}
+
+nav a {
+  color: #bbbbbb; /* светло-серый ссылки */
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #eeeeee; /* чуть светлее при наведении */
+}
+
+section {
+  padding: 30px;
+  background: linear-gradient(135deg, #222222, #444444); /* мягкий градиент серого */
+  border-radius: 6px;
+}
+
+button {
+  background: linear-gradient(to bottom, #888888, #555555);
+  color: #f0f0f0;
+  padding: 10px 15px;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #aaaaaa, #777777);
+}
+footer {
+  text-align: center;
+  background-color: #1a1a1a; /* тёмно-серый */
+  padding: 10px;
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.result-container {
+  text-align: center;
+  margin-top: 40px; /* отступ сверху, можно настроить */
+}
+
+.result-container button {
+  margin-top: 20px;
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+  background-color: #1a1a1a;
+  color: #ccc;
+  padding: 10px;
+  font-size: 14px;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+/* Центрируем весь контент страницы правил по вертикали и горизонтали */
+.rules-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* по вертикали */
+  align-items: center;     /* по горизонтали */
+  min-height: 80vh;        /* чтобы занять почти всю высоту экрана */
+  text-align: center;      /* чтобы текст внутри был тоже по центру */
+  padding: 20px;
+}
+
+.rules-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#rules-container {
+  width: 400px;
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#chat-container {
+  width: 300px;
+  float: right;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* Чтобы контейнер-родитель подхватывал плавающие блоки */
+.container {
+  overflow: hidden;
+  width: 720px; /* пример, сумма ширин + паддингов */
+  margin: 0 auto;
+}

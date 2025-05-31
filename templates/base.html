@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}КиберБезопасность{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #303030;
+      color: #e0e0e0;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(135deg, #222222, #444444);
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 10px 0;
+      font-weight: normal;
+    }
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      flex-grow: 1;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    footer {
+      background: #222;
+      color: #969696;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Добро пожаловать!</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Главная</a>
+      <a href="{{ url_for('rules') }}">Правила</a>
+      <a href="{{ url_for('test_start') }}">Пройти тест</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    © 2025
+  </footer>
+  
+</body>
+</html>

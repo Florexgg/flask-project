@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}Правила{% endblock %}
+
+{% block content %}
+<button id="prev">Назад</button>
+<button id="next">Вперед</button>
+
+<div id="rules-container">
+  <section class="rule" id="rule1">
+    <strong>Что такое фишинг?</strong>
+    <p>Фишинг — это мошенничество, при котором злоумышленники пытаются получить ваши данные.</p>
+    <div class="tooltip">Фишинг — попытка выманить у вас логин, пароль или деньги.</div>
+  </section>
+  <section class="rule" id="rule2">
+    <strong>Как создать надежный пароль?</strong>
+    <p>Используйте сложные пароли с цифрами, буквами и символами.</p>
+    <div class="tooltip">Пароль должен быть длинным и уникальным!</div>
+  </section>
+  <section class="rule" id="rule3">
+    <strong>Что делать при подозрении на взлом?</strong>
+    <p>Смените пароли, включите двухфакторную аутентификацию и проверьте устройство на вирусы.</p>
+    <div class="tooltip">Безопасность — ваша ответственность!</div>
+  </section>
+</div>
+
+  <script>
+  const rulesrules = document.querySelectorAll('.rule');
+  let currentIndex = 0;
+
+  function showRule(index) {
+    rules.forEach((rule, i) => {
+      rule.style.display = i === index ? 'block' : 'none';
+    });
+  }
+
+  document.getElementById('prev').onclick = () => {
+    currentIndex = (currentIndex - 1 + rules.length) % rules.length;
+    showRule(currentIndex);
+  };
+
+  document.getElementById('next').onclick = () => {
+    currentIndex = (currentIndex + 1) % rules.length;
+    showRule(currentIndex);
+  };
+
+  // Показываем первое правило при загрузке
+  showRule(currentIndex);
+</script>
+
+  <div id="progress-bar-container" aria-label="Прогресс изучения правил">
+    <div id="progress-bar"></div>
+  </div>
+  <div id="medal">🏅 Поздравляем! Вы изучили все правила!</div>
+  
+
+
+  <div id="chat-container">
+    <h3>Чат-бот по кибербезопасности</h3>
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Задайте вопрос..." autocomplete="off" />
+    <button id="chat-send">Отправить</button>
+  </div>
+
+  <style>
+    /* Вставь сюда CSS из твоего большого файла */
+    section.rule {
+      background: linear-gradient(135deg, #333333, #555555);
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 15px;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      position: relative;
+    }
+    section.rule:hover {
+      background-color: #666666;
+    }
+    section.rule .tooltip {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      background: #717171cc;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.85em;
+      display: none;
+      max-width: 200px;
+    }
+    section.rule:hover .tooltip {
+      display: block;
+    }
+    #progress-bar-container {
+      width: 100%;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0;
+      height: 20px;
+    }
+    #progress-bar {
+      height: 100%;
+      width: 0;
+      background: #88cc88;
+      transition: width 0.4s ease;
+    }
+    #medal {
+      margin-top: 10px;
+      font-size: 1.4em;
+      color: gold;
+      display: none;
+      user-select: none;
+    }
+    #chat-container {
+      margin-top: 30px;
+      background: linear-gradient(135deg, #222222, #444444);
+      border-radius: 6px;
+      padding: 15px;
+      width: 100%;
+      max-width: 700px;
+      color: #e0e0e0;
+      font-size: 0.95em;
+    }
+    #chat-log {
+      height: 150px;
+      overflow-y: auto;
+      background: #111;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .chat-message {
+      margin-bottom: 8px;
+    }
+    .chat-message.user {
+      color: #88ccff;
+    }
+    .chat-message.bot {
+      color: #ccff88;
+    }
+    #chat-input {
+      width: calc(100% - 90px);
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      font-size: 1em;
+    }
+    #chat-send {
+      width: 70px;
+      padding: 8px;
+      margin-left: 10px;
+      border-radius: 4px;
+      border: none;
+      background: #444;
+      color: #eee;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #chat-send:hover {
+      background: #666;
+    }
+    nav {
+      margin-top: 20px;
+      text-align: center;
+    }
+    nav button {
+      background: linear-gradient(to bottom, #888888, #555555);
+      color: #f0f0f0;
+      padding: 10px 15px;
+      border: none;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      font-size: 1em;
+      min-width: 140px;
+      transition: background-color 0.3s;
+    }
+    nav button:hover {
+      background: linear-gradient(to bottom, #aaaaaa, #777777);
+    }
+  </style>
+
+
+  <script>
+  // Обновленная функция отправки сообщения на сервер
+  async function getAIResponse(message) {
+    try {
+      const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+      const data = await response.json();
+      return data.reply;
+    } catch {
+      return "Извините, не удалось получить ответ от сервера.";
+    }
+  }
+
+  const chatLog = document.getElementById('chat-log');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.classList.add('chat-message', sender);
+    div.textContent = text;
+    chatLog.appendChild(div);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  chatSend.addEventListener('click', async () => {
+    const userMessage = chatInput.value.trim();
+    if (!userMessage) return;
+    addMessage(userMessage, 'user');
+    chatInput.value = '';
+    chatInput.focus();
+
+    const botReply = await getAIResponse(userMessage);
+    addMessage(botReply, 'bot');
+  });
+
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      chatSend.click();
+    }
+  });
+
+  // Оставляем логику отслеживания прочтения правил
+  const rules = document.querySelectorAll('section.rule');
+  const progressBar = document.getElementById('progress-bar');
+  const medal = document.getElementById('medal');
+
+  function updateProgress() {
+    let readCount = 0;
+    rules.forEach(rule => {
+      if (rule.dataset.read === "true") readCount++;
+    });
+    const progressPercent = (readCount / rules.length) * 100;
+    progressBar.style.width = progressPercent + '%';
+
+    if (readCount === rules.length) {
+      medal.style.display = 'block';
+    }
+  }
+
+  rules.forEach(rule => {
+    rule.addEventListener('click', () => {
+      if (rule.dataset.read === "false") {
+        rule.dataset.read = "true";
+        updateProgress();
+      }
+    });
+  });
+</script>
+{% endblock %}
