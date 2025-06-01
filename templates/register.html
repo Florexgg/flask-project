@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="card4">
+        <div class="card3">
+
+            <h2>Регистрация</h2>
+
+            <form method="POST">
+                <input type="text" name="name" placeholder="Имя" required class="input-name"><br><br>
+
+                <input type="email" name="email" placeholder="Email" required class="input-email"><br><br>
+
+                <div class="password-wrapper">
+                    <input type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Пароль"
+                            required
+                            pattern="[A-Za-z0-9]{8,}"
+                            title="Минимум 8 символов. Только латинские буквы и цифры."
+                            class="input-password">
+                </div><br>
+
+
+                <button type="submit" class="submit-button">Зарегистрироваться</button>
+            </form>
+
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

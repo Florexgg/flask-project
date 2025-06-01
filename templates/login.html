@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <div class="auth-container">
+
+            <h2>Вход</h2>
+
+            <form method="POST">
+                <input type="email" name="email" placeholder="Email" required class="input-email"><br><br>
+
+                <div class="password-wrapper">
+                    <input type="password" name="password" id="login-password" placeholder="Пароль" required class="input-password">
+                    <!-- <span id="toggleLoginPassword" class="toggle-eye">🙈</span> -->
+                </div><br>
+
+                <button type="submit" class="submit-button">Войти</button>
+            </form>
+
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
